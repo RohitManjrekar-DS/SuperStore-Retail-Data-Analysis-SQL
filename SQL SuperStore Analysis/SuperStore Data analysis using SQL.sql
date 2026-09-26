@@ -13,10 +13,12 @@ select Order_ID from superstore
 where region = 'West'
 
 --Count the total number of orders.
-select COUNT(order_id) [Total Number of orders] from SuperStore
+SELECT COUNT(DISTINCT customer_id) AS [Total Customers]
+FROM SuperStore;
 
 --Find the total number of customers.
-select Count(customer_id) [Total Customer] from SuperStore
+SELECT COUNT(DISTINCT customer_id) AS [Total Customers]
+FROM SuperStore;
 
 --List all unique categories.
 select Distinct Category from SuperStore
@@ -88,8 +90,12 @@ group by segment
 ------------------------PRODUCT ANALYSIS---------------------------------
 
 -- Find the top 10 products by sales.
-select Top 10 product_id,Sum(sales) As Total_Sales from SuperStore
-group by Product_ID
+SELECT TOP 10
+       product_id,
+       SUM(sales) AS Total_Sales
+FROM SuperStore
+GROUP BY product_id
+ORDER BY Total_Sales DESC;
 
 -- Find the best-selling category.
 select Category,sum(Sales) As Total_Sales from superstore
